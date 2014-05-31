@@ -32,7 +32,7 @@ Windows users can use CMake to generate a Visual Studio project.
 To be completed
 ---------------
 
-Classes for the following mathematical structures have yet to be completed:
+Classes for the following mathematical structures are yet to be completed:
 
  * Vector2
  * Vector4
