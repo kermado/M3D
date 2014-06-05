@@ -108,8 +108,8 @@ namespace M3D
 		float magnitude() const;
 
 		/**
-		 * Returns a quaternion representing the same rotation as this
-		 * quaternion but with magnitude equal to 1.
+		 * Returns a copy of this quaternion representing the same rotation but
+		 * with magnitude equal to 1.
 		 *
 		 * @return This quaternion normalized.
 		 */
@@ -122,31 +122,36 @@ namespace M3D
 		void normalize();
 
 		/**
-		 * Rotates the quaternion towards `target` by an angular step of
-		 * `maxRadiansDelta` (without overshoot).
+		 * Rotates this unit quaternion towards the specified `target` unit
+		 * quaternion by an angular step of `maxRadiansDelta` (without
+		 * overshoot).
 		 *
-		 * @param target Target quaternion.
+		 * @param target Target unit quaternion rotation.
 		 * @param maxRadiansDelta Maximum number of radians to rotate.
 		 */
 		void rotateTowards(const Quaternion& target, float maxRadiansDelta);
 
 		/**
-		 * Returns a quaternion corresponding to the rotation around the
-		 * specified `axis` by the specified `angle`.
+		 * Returns a unit quaternion corresponding to the rotation around the
+		 * specified unit vector `axis` by the specified `angle`.
+		 *
+		 * @note The axis supplied must be a unit vector.
 		 *
 		 * @param angle Angle in radians.
 		 * @param axis Axis for the rotation.
+		 * @return Unit quaternion corresponding to the angle-axis rotation
+		 * provided.
 		 */
 		static Quaternion angleAxis(const float angle, const Vector3& axis);
 
 		/**
-		 * Returns a quaternion corresponding to the rotation of z radians about
-		 * the z-axis, y radians about the y-axis and z radians about the
+		 * Returns a unit quaternion corresponding to the rotation of z radians
+		 * about the z-axis, y radians about the y-axis and x radians about the
 		 * x-axis (in that order).
 		 *
 		 * @param eulerAngles The euler angles for the rotation.
-		 * @return Quaternion corresponding to the rotation specified by the
-		 * supplied euler angles.
+		 * @return Unit quaternion corresponding to the rotation specified by
+		 * the supplied euler angles.
 		 */
 		static Quaternion euler(const Vector3& eulerAngles);
 
@@ -156,7 +161,8 @@ namespace M3D
 		 *
 		 * @param fromDirection Direction for the quaternion to rotate from.
 		 * @param toDirection Direction for the quaternion to rotate to.
-		 * @return Rotation from `fromDirection` to `toDirection`.
+		 * @return Unit quaternion corresponding to the rotation from
+		 * `fromDirection` to `toDirection`.
 		 */
 		static Quaternion fromToRotation(const Vector3& fromDirection, const Vector3& toDirection);
 
@@ -188,16 +194,20 @@ namespace M3D
 		static Quaternion lookRotation(const Vector3& forward, const Vector3& upwards);
 
 		/**
-		 * Returns the conjugate of the quaternion.
+		 * Returns a copy of the conjugate of this quaternion.
 		 *
 		 * @return Conjugate of the quaternion.
 		 */
 		Quaternion conjugate() const;
 
 		/**
-		 * Returns the multiplicitive inverse of the quaternion.
+		 * Returns a copy of the multiplicitive inverse of this quaternion.
 		 *
-		 * @return Multiplicitive inverse.
+		 * @note The inverse of a unit quaternion is exactly equal to the
+		 * conjugate. The conjugate is less expensive to compute and so should
+		 * be preferred when working with unit quaternions.
+		 *
+		 * @return Multiplicitive inverse of this quaternion.
 		 */
 		Quaternion inverse() const;
 
@@ -230,7 +240,7 @@ namespace M3D
 	};
 
 	/**
-	 * Returns the dot product of two quaternions.
+	 * Returns the dot (scalar) product of two quaternions.
 	 *
 	 * The dot product is commutative.
 	 *
@@ -241,11 +251,11 @@ namespace M3D
 	float dot(const Quaternion& lhs, const Quaternion& rhs);
 
 	/**
-	 * Returns the angle (in radians) between the two quaternion rotations
+	 * Returns the angle (in radians) between the two unit quaternion rotations
 	 * supplied.
 	 *
-	 * @param from The quaternion that the angle should be measured from.
-	 * @param to The quaternion that the angle should be measured to.
+	 * @param from The unit quaternion that the angle should be measured from.
+	 * @param to The unit quaternion that the angle should be measured to.
 	 * @return Angle (radians) between the two rotations.
 	 */
 	float angle(const Quaternion& from, const Quaternion& to);

@@ -119,13 +119,17 @@ namespace M3D
 
 	Vector3 cross(const Vector3& lhs, const Vector3& rhs)
 	{
-		return Vector3(lhs.y * rhs.z - lhs.z * rhs.y,
-			lhs.z * rhs.x - lhs.x * rhs.z, lhs.x * rhs.y - lhs.y * rhs.x);
+		return Vector3(
+			lhs.y * rhs.z - lhs.z * rhs.y,
+			lhs.z * rhs.x - lhs.x * rhs.z,
+			lhs.x * rhs.y - lhs.y * rhs.x
+		);
 	}
 
 	float angle(const Vector3& from, const Vector3& to)
 	{
-		return acos(dot(from, to) / sqrt(from.sqrMagnitude() * to.sqrMagnitude()));
+		const float cosTheta = dot(from, to) / sqrt(from.sqrMagnitude() * to.sqrMagnitude());
+		return std::acos(std::fmin(1.0f, cosTheta));
 	}
 
 	float sqrDistance(const Vector3& p1, const Vector3& p2)

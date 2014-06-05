@@ -64,6 +64,7 @@ namespace M3D
 		 * Vector negation operator.
 		 *
 		 * @param v The vector to negate.
+		 * @return The additive inverse of the vector `v`.
 		 */
 		friend Vector3 operator-(const Vector3 &v);
 
@@ -121,7 +122,7 @@ namespace M3D
 		float magnitude() const;
 
 		/**
-		 * Returns a vector pointing in the same direction as this vector, but
+		 * Returns a copy of this vector that points in the same direction, but
 		 * with a magnitude of 1.
 		 *
 		 * @return This vector with a magnitude of 1.

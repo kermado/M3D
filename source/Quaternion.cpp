@@ -98,15 +98,11 @@ namespace M3D
 	{
 		// Relative unit quaternion rotation between this quaternion and the
 		// target quaternion.
-		Quaternion relativeRotation = inverse() * target;
+		const Quaternion relativeRotation = conjugate() * target;
 
 		// Calculate the angle and axis of the relative quaternion rotation.
-		if (relativeRotation.w > 1.0f)
-		{
-			relativeRotation.normalize();
-		}
-
-		const float angle = 2.0f * acos(relativeRotation.w);
+		assert(std::abs(relativeRotation.w) <= 1.0f);
+		const float angle = 2.0f * std::acos(relativeRotation.w);
 		const Vector3 axis(relativeRotation.x, relativeRotation.y, relativeRotation.z);
 
 		// Apply a step of the relative rotation.
@@ -114,8 +110,10 @@ namespace M3D
 		{
 			// If the angle between the two quaternions is greater than the
 			// maximum amount we are allowed to rotate by, then rotate by
-			// maxRadiansDelta.
-			const Quaternion delta = Quaternion::angleAxis(maxRadiansDelta, axis);
+			// maxRadiansDelta. Note that we need to normalize the axis as the
+			// vector part of the relativeRotation quaternion is probably not
+			// a unit vector (unless the scalar part is zero).
+			const Quaternion delta = Quaternion::angleAxis(maxRadiansDelta, axis.normalized());
 			(*this) = delta * (*this);
 		}
 		else
@@ -138,9 +136,12 @@ namespace M3D
 
 	Quaternion Quaternion::angleAxis(const float angle, const Vector3& axis)
 	{
-		const float sineHalfTheta = sin(0.5f * angle);
-		const Vector3 unitAxis = axis.normalized();
-		return Quaternion(cos(0.5f * angle), unitAxis * sineHalfTheta);
+		// The axis supplied should be a unit vector. We don't automatically
+		// normalize the axis for efficiency.
+		assert(std::abs(axis.magnitude() - 1.0f) < 1e-6);
+
+		const float halfAngle = 0.5f * angle;
+		return Quaternion(std::cos(halfAngle), axis * std::sin(halfAngle));
 	}
 
 	Quaternion Quaternion::euler(const Vector3& eulerAngles)
@@ -149,12 +150,12 @@ namespace M3D
 		const float halfTheta = 0.5f * eulerAngles.y; // Half the pitch.
 		const float halfPsi = 0.5f * eulerAngles.z; // Half the yaw.
 
-		const float cosHalfPhi = cos(halfPhi);
-		const float sinHalfPhi = sin(halfPhi);
-		const float cosHalfTheta = cos(halfTheta);
-		const float sinHalfTheta = sin(halfTheta);
-		const float cosHalfPsi = cos(halfPsi);
-		const float sinHalfPsi = sin(halfPsi);
+		const float cosHalfPhi = std::cos(halfPhi);
+		const float sinHalfPhi = std::sin(halfPhi);
+		const float cosHalfTheta = std::cos(halfTheta);
+		const float sinHalfTheta = std::sin(halfTheta);
+		const float cosHalfPsi = std::cos(halfPsi);
+		const float sinHalfPsi = std::sin(halfPsi);
 
 		return Quaternion(
 			cosHalfPhi * cosHalfTheta * cosHalfPsi - sinHalfPhi * sinHalfTheta * sinHalfPsi,
@@ -193,9 +194,9 @@ namespace M3D
 				axis = cross(unitFrom, Vector3::UP);
 			}
 
-			// We don't need to normalize the axis as this is done in the
-			// angleAxis function.
-			return Quaternion::angleAxis(M_PI, axis);
+			// Note that we need to normalize the axis as the cross product of
+			// two unit vectors is not nececessarily a unit vector.
+			return angleAxis(M_PI, axis.normalized());
 		}
 		else
 		{
@@ -265,13 +266,8 @@ namespace M3D
 
 	float angle(const Quaternion& from, const Quaternion& to)
 	{
-		Quaternion relativeRotation = from.inverse() * to;
-
-		if (relativeRotation.w > 1.0f)
-		{
-			relativeRotation.normalize();
-		}
-
-		return 2.0f * acos(relativeRotation.w);
+		const Quaternion relativeRotation = from.conjugate() * to;
+		assert(std::abs(relativeRotation.w) <= 1.0f);
+		return 2.0f * std::acos(relativeRotation.w);
 	}
 }

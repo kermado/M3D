@@ -1,6 +1,6 @@
 #include <boost/test/unit_test.hpp>
-#include <Quaternion.hpp>
 #include <cmath>
+#include <Quaternion.hpp>
 
 using namespace M3D;
 
@@ -283,7 +283,7 @@ BOOST_AUTO_TEST_CASE(TestInverse)
  */
 BOOST_AUTO_TEST_CASE(TestAngle1)
 {
-	const Quaternion q(0.5f, 0.5f, 0.25f, 0.125f);
+	const Quaternion q = Quaternion::IDENTITY;
 	BOOST_CHECK_CLOSE(angle(q, q), 0.0f, 1e-3);
 }
 
@@ -292,7 +292,8 @@ BOOST_AUTO_TEST_CASE(TestAngle1)
  */
 BOOST_AUTO_TEST_CASE(TestAngle2)
 {
-	const Quaternion q(1.5f, 0.5f, 0.25f, 0.125f);
+	Quaternion q(0.5f, 0.25f, 0.25f, 0.5f);
+	q.normalize();
 	BOOST_CHECK_CLOSE(angle(q, q), 0.0f, 1e-3);
 }
 
@@ -446,6 +447,33 @@ BOOST_AUTO_TEST_CASE(TestLookRotation4)
 	// direction to the lookRotation static factory function.
 	const Quaternion q2 = Quaternion::lookRotation(Vector3::ONE, Vector3::UP);
 	BOOST_CHECK(q2 * Vector3::UP == Vector3::UP);
+}
+
+/**
+ * Fifth test for the lookRotation static factory function.
+ *
+ * This test checks that we don't suffer from gimbal lock. We should be able to
+ * construct a quaternion that looks in the up or down directions.
+ */
+BOOST_AUTO_TEST_CASE(TestLookRotation5)
+{
+	// Quaternion that rotates the forward vector to look in the down direction.
+	const Quaternion q1 = Quaternion::lookRotation(Vector3::DOWN, Vector3::UP);
+
+	// Rotating the forward vector should produce the down vector.
+	BOOST_CHECK(q1 * Vector3::FORWARD == Vector3::DOWN);
+
+	// Rotating the up vector should produce the forward vector.
+	BOOST_CHECK(q1 * Vector3::UP == Vector3::FORWARD);
+
+	// Quaternion that rotates the forward vector to look in the up direction.
+	const Quaternion q2 = Quaternion::lookRotation(Vector3::UP, Vector3::UP);
+
+	// Rotating the forward vector should produce the up vector.
+	BOOST_CHECK(q2 * Vector3::FORWARD == Vector3::UP);
+
+	// Rotating the up vector should produce the back vector.
+	BOOST_CHECK(q2 * Vector3::UP == Vector3::BACK);
 }
 
 /**

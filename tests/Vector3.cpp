@@ -1,6 +1,6 @@
 #include <boost/test/unit_test.hpp>
-#include <Vector3.hpp>
 #include <cmath>
+#include <Vector3.hpp>
 
 using namespace M3D;
 
@@ -193,7 +193,7 @@ BOOST_AUTO_TEST_CASE(TestSqrMagnitude)
 {
 	const Vector3 v(2.0f, 3.0f, 5.0f);
 
-	BOOST_CHECK_EQUAL(v.sqrMagnitude(), 38.0f);
+	BOOST_CHECK_CLOSE(v.sqrMagnitude(), 38.0f, 1e-3);
 }
 
 /**
@@ -203,7 +203,7 @@ BOOST_AUTO_TEST_CASE(TestMagnitude)
 {
 	const Vector3 v(2.0f, 4.0f, 4.0f);
 
-	BOOST_CHECK_EQUAL(v.magnitude(), 6.0f);
+	BOOST_CHECK_CLOSE(v.magnitude(), 6.0f, 1e-3);
 }
 
 /**
@@ -248,7 +248,7 @@ BOOST_AUTO_TEST_CASE(TestDotProduct)
 	const Vector3 v2(1.0f, -3.0f, 5.0f);
 	const float d = dot(v1, v2);
 
-	BOOST_CHECK_EQUAL(d, -15.0f);
+	BOOST_CHECK_CLOSE(d, -15.0f, 1e-3);
 }
 
 /**
@@ -304,9 +304,11 @@ BOOST_AUTO_TEST_CASE(TestCrossProduct4)
  */
 BOOST_AUTO_TEST_CASE(TestAngle1)
 {
-	Vector3 v(1.0, 1.0, 1.0);
+	Vector3 v1(1.0, 1.0, 1.0);
+	Vector3 v2(-1.0, -1.0, -1.0);
 
-	BOOST_CHECK_EQUAL(angle(v, v), 0.0f);
+	BOOST_CHECK_CLOSE(angle(v1, v1), 0.0f, 1e-3);
+	BOOST_CHECK_CLOSE(angle(v2, v2), 0.0f, 1e-3);
 }
 
 /**
@@ -349,7 +351,7 @@ BOOST_AUTO_TEST_CASE(TestSqrDistance1)
 {
 	Vector3 v(2.0f, -3.0f, 5.0f);
 
-	BOOST_CHECK_EQUAL(sqrDistance(v, v), 0.0f);
+	BOOST_CHECK_CLOSE(sqrDistance(v, v), 0.0f, 1e-3);
 }
 
 /**
@@ -360,7 +362,7 @@ BOOST_AUTO_TEST_CASE(TestSqrDistance2)
 	Vector3 v1(-2.0f, 3.0f, -5.0);
 	Vector3 v2(1.0f, 2.0f, 3.0f);
 
-	BOOST_CHECK_EQUAL(sqrDistance(v1, v2), 74.0f);
+	BOOST_CHECK_CLOSE(sqrDistance(v1, v2), 74.0f, 1e-3);
 }
 
 /**
@@ -370,7 +372,7 @@ BOOST_AUTO_TEST_CASE(TestDistance1)
 {
 	Vector3 v(1.0f, 2.0f, 3.0f);
 
-	BOOST_CHECK_EQUAL(distance(v, v), 0.0f);
+	BOOST_CHECK_CLOSE(distance(v, v), 0.0f, 1e-3);
 }
 
 /**
@@ -381,7 +383,7 @@ BOOST_AUTO_TEST_CASE(TestDistance2)
 	Vector3 v1(0.0f, 0.0f, 0.0f);
 	Vector3 v2(4.0f, 2.0f, 4.0f);
 
-	BOOST_CHECK_EQUAL(distance(v1, v2), 6.0f);
+	BOOST_CHECK_CLOSE(distance(v1, v2), 6.0f, 1e-3);
 }
 
 /**
@@ -392,7 +394,7 @@ BOOST_AUTO_TEST_CASE(TestDistance3)
 	Vector3 v1(0.0f, 0.0f, -10.0f);
 	Vector3 v2(0.0f, 0.0f, 1.0f);
 
-	BOOST_CHECK_EQUAL(distance(v1, v2), 11.0f);
+	BOOST_CHECK_CLOSE(distance(v1, v2), 11.0f, 1e-3);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

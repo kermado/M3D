@@ -8,6 +8,7 @@ M3D is an extremely lightweight cross-platform C++ mathematics library intended 
 
  * Vector3
  * Quaternion
+ * Matrix3x3
 
 Requirements
 ------------
@@ -36,7 +37,7 @@ Classes for the following mathematical structures are yet to be completed:
 
  * Vector2
  * Vector4
- * Matrix3x3
+ * Matrix2x2
  * Matrix4x4
 
 Authors

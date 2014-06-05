@@ -12,6 +12,7 @@ SET(TEST_SRCS
 	${SRC_ROOT}/main.cpp
 	${SRC_ROOT}/Vector3.cpp
 	${SRC_ROOT}/Quaternion.cpp
+	${SRC_ROOT}/Matrix3.cpp
 )
 
 # Add the unit tests executable.
