@@ -11,6 +11,7 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include)
 SET(TEST_SRCS
 	${SRC_ROOT}/main.cpp
 	${SRC_ROOT}/Vector3.cpp
+	${SRC_ROOT}/Vector4.cpp
 	${SRC_ROOT}/Quaternion.cpp
 	${SRC_ROOT}/Matrix3.cpp
 )

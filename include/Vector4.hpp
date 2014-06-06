@@ -1,11 +1,13 @@
-#ifndef VECTOR3_HPP
-#define VECTOR3_HPP
+#ifndef VECTOR4_HPP
+#define VECTOR4_HPP
 
 #include <iostream>
 
+#include <Vector3.hpp>
+
 namespace M3D
 {
-	class Vector3
+	class Vector4
 	{
 	public:
 		/**
@@ -13,7 +15,7 @@ namespace M3D
 		 *
 		 * Constructs the zero vector.
 		 */
-		Vector3();
+		Vector4();
 
 		/**
 		 * Constructor.
@@ -21,8 +23,25 @@ namespace M3D
 		 * @param x_ The first component.
 		 * @param y_ The second component.
 		 * @param z_ The third component.
+		 * @param w_ The fourth component.
 		 */
-		Vector3(float x_, float y_, float z_);
+		Vector4(float x_, float y_, float z_, float w_);
+
+		/**
+		 * Constructor.
+		 *
+		 * Constructs a 4D vector from a 3D vector by setting the fourth
+		 * component equal to zero.
+		 */
+		Vector4(const Vector3& v);
+
+		/**
+		 * Constructor.
+		 *
+		 * Constructs a 4D vector from a 3D vector and specified fourth
+		 * component value.
+		 */
+		Vector4(const Vector3& v, float w_);
 
 		/**
 		 * Vector equality operator.
@@ -31,7 +50,7 @@ namespace M3D
 		 * @param v2 The second vector.
 		 * @return True if the two supplied vectors are equal. False otherwise.
 		 */
-		friend float operator==(const Vector3& v1, const Vector3& v2);
+		friend float operator==(const Vector4& v1, const Vector4& v2);
 
 		/**
 		 * Vector non-equality operator.
@@ -41,7 +60,7 @@ namespace M3D
 		 * @return True if the two supplied vectors are not equal. False
 		 * otherwise.
 		 */
-		friend float operator!=(const Vector3& v1, const Vector3& v2);
+		friend float operator!=(const Vector4& v1, const Vector4& v2);
 
 		/**
 		 * Vector addition operator.
@@ -50,7 +69,7 @@ namespace M3D
 		 * @param v2 Second vector.
 		 * @return Result of adding the first vector to the second vector.
 		 */
-		friend Vector3 operator+(const Vector3& v1, const Vector3& v2);
+		friend Vector4 operator+(const Vector4& v1, const Vector4& v2);
 
 		/**
 		 * Vector subtraction operator.
@@ -60,7 +79,7 @@ namespace M3D
 		 * @return Result of subtracting the second vector from the first
 		 * vector.
 		 */
-		friend Vector3 operator-(const Vector3& v1, const Vector3& v2);
+		friend Vector4 operator-(const Vector4& v1, const Vector4& v2);
 
 		/**
 		 * Vector negation operator.
@@ -68,7 +87,7 @@ namespace M3D
 		 * @param v The vector to negate.
 		 * @return The additive inverse of the vector `v`.
 		 */
-		friend Vector3 operator-(const Vector3 &v);
+		friend Vector4 operator-(const Vector4 &v);
 
 		/**
 		 * Scalar multiplication operator.
@@ -77,7 +96,7 @@ namespace M3D
 		 * @param s The scalar value.
 		 * @return Vector `v` scaled by `s`.
 		 */
-		friend Vector3 operator*(const Vector3& v, const float s);
+		friend Vector4 operator*(const Vector4& v, const float s);
 
 		/**
 		 * Scalar multiplication operator.
@@ -86,7 +105,7 @@ namespace M3D
 		 * @param v The vector.
 		 * @return Vector `v` scaled by `s`.
 		 */
-		friend Vector3 operator*(const float s, const Vector3& v);
+		friend Vector4 operator*(const float s, const Vector4& v);
 
 		/**
 		 * Scalar division operator.
@@ -95,7 +114,7 @@ namespace M3D
 		 * @param s The scalar value.
 		 * @return Vector `v` scaled by the reciprocal of `s`.
 		 */
-		friend Vector3 operator/(const Vector3& v, const float s);
+		friend Vector4 operator/(const Vector4& v, const float s);
 
 		/**
 		 * Stream output operator.
@@ -104,7 +123,7 @@ namespace M3D
 		 * @param v Vector to output.
 		 * @return Output stream.
 		 */
-		friend std::ostream& operator <<(std::ostream& out, const Vector3& v);
+		friend std::ostream& operator <<(std::ostream& out, const Vector4& v);
 
 		/**
 		 * Returns the squared length of the vector.
@@ -129,7 +148,7 @@ namespace M3D
 		 *
 		 * @return This vector with a magnitude of 1.
 		 */
-		Vector3 normalized() const;
+		Vector4 normalized() const;
 
 		/**
 		 * Normalizes the vector so that it points in the same direction but
@@ -153,52 +172,21 @@ namespace M3D
 		 */
 		float z;
 
+		/**
+		 * Fourth component.
+		 */
+		float w;
+
 	public:
 		/**
-		 * Vector representing the forward direction.
-		 * This is shorthand for writing Vector3(0.0f, 0.0f, 1.0f).
+		 * Shorthand for writing Vector3(1.0f, 1.0f, 1.0f, 1.0f).
 		 */
-		static const Vector3 FORWARD;
+		static const Vector4 ONE;
 
 		/**
-		 * Vector representing the back direction.
-		 * This is shorthand for writing Vector3(0.0f, 0.0f, -1.0f).
+		 * Shorthand for writing Vector3(0.0f, 0.0f, 0.0f, 0.0f).
 		 */
-		static const Vector3 BACK;
-
-		/**
-		 * Vector representing the up direction.
-		 * This is shorthand for writing Vector3(0.0f, 1.0f, 0.0f).
-		 */
-		static const Vector3 UP;
-
-		/**
-		 * Vector representing the down direction.
-		 * This is shorthand for writing Vector3(0.0f, -1.0f, 0.0f).
-		 */
-		static const Vector3 DOWN;
-
-		/**
-		 * Vector representing the right direction.
-		 * This is shorthand for writing Vector3(1.0f, 0.0f, 0.0f).
-		 */
-		static const Vector3 RIGHT;
-
-		/**
-		 * Vector representing the left direction.
-		 * This is shorthand for writing Vector3(-1.0f, 0.0f, 0.0f).
-		 */
-		static const Vector3 LEFT;
-
-		/**
-		 * Shorthand for writing Vector3(1.0f, 1.0f, 1.0f).
-		 */
-		static const Vector3 ONE;
-
-		/**
-		 * Shorthand for writing Vector3(0.0f, 0.0f, 0.0f).
-		 */
-		static const Vector3 ZERO;
+		static const Vector4 ZERO;
 	};
 
 	/**
@@ -209,73 +197,36 @@ namespace M3D
 	 * @param v2 The right hand side vector.
 	 * @return Result of scaling the first vector by the second vector.
 	 */
-	Vector3 scale(const Vector3& v1, const Vector3& v2);
+	Vector4 scale(const Vector4& v1, const Vector4& v2);
 
 	/**
 	 * Returns the dot product of two vectors.
 	 *
-	 * The dot product is commutative. For normalized vectors, the dot product
-	 * returns 1 if they point in exactly the same direction, -1 if they
-	 * point in completely opposite directions and 0 if they vectors are
-	 * perpendicular.
+	 * The dot product is commutative.
 	 *
 	 * @param lhs The left hand side vector.
 	 * @param rhs The right hand side vector.
 	 * @return Dot product of the two vectors.
 	 */
-	float dot(const Vector3& lhs, const Vector3& rhs);
-
-	/**
-	 * Returns the cross product (sometimes called the vector product) of two
-	 * vectors.
-	 *
-	 * The cross product of two vectors returns a third vector that is
-	 * orthogonal to both. The direction of the third vector can be determined
-	 * using the "right hand rule". The magnitude of the third vector is equal
-	 * to the sine of the angle between the two input vectors multipled by the
-	 * magnitudes of both input vectors.
-	 *
-	 * If the two supplied vectors are equal or exactly opposite in direction,
-	 * the cross product is the zero vector.
-	 *
-	 * @param lhs The left hand side vector.
-	 * @param rhs The right hand side vector.
-	 * @return Returns the cross product `lhs` x `rhs`.
-	 */
-	Vector3 cross(const Vector3& lhs, const Vector3& rhs);
-
-	/**
-	 * Returns the smallest angle in radians between `from` and `to`.
-	 *
-	 * @param from The angle extends round from this vector.
-	 * @param to The angle extends round to this vector.
-	 * @return Angle in radians.
-	 */
-	float angle(const Vector3& from, const Vector3& to);
+	float dot(const Vector4& lhs, const Vector4& rhs);
 
 	/**
 	 * Returns the square distance between vectors `p1` and `p2`.
-	 *
-	 * Visualizing both input vectors as points in 3D space, this is the
-	 * square of the straight-line distance between the two points.
 	 *
 	 * @param p1 The vector representing the first point.
 	 * @param p2 The vector representing the second point.
 	 * @return Square of the distance between the two points.
 	 */
-	float sqrDistance(const Vector3& p1, const Vector3& p2);
+	float sqrDistance(const Vector4& p1, const Vector4& p2);
 
 	/**
 	 * Returns the distance between vectors `p1` and `p2`.
-	 *
-	 * Visualizing both input vectors as points in 3D space, this is the
-	 * straight-line distance between the two points.
 	 *
 	 * @param p1 The vector representing the first point.
 	 * @param p2 The vector representing the second point.
 	 * @return Distance between the two points.
 	 */
-	float distance(const Vector3& p1, const Vector3& p2);
+	float distance(const Vector4& p1, const Vector4& p2);
 }
 
 #endif

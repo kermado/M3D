@@ -26,6 +26,9 @@ SET(LIBRARY_SRCS
 	${INC_ROOT}/Vector3.hpp
 	${SRC_ROOT}/Vector3.cpp
 
+	${INC_ROOT}/Vector4.hpp
+	${SRC_ROOT}/Vector4.cpp
+
 	${INC_ROOT}/Quaternion.hpp
 	${SRC_ROOT}/Quaternion.cpp
 
