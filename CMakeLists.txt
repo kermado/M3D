@@ -34,6 +34,9 @@ SET(LIBRARY_SRCS
 
 	${INC_ROOT}/Matrix3.hpp
 	${SRC_ROOT}/Matrix3.cpp
+
+	${INC_ROOT}/Matrix4.hpp
+	${SRC_ROOT}/Matrix4.cpp
 )
 
 # Use c++11 in all cases.

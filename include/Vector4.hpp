@@ -179,12 +179,48 @@ namespace M3D
 
 	public:
 		/**
-		 * Shorthand for writing Vector3(1.0f, 1.0f, 1.0f, 1.0f).
+		 * Vector representing the forward direction.
+		 * This is shorthand for writing Vector4(0.0f, 0.0f, 1.0f, 0.0f).
+		 */
+		static const Vector4 FORWARD;
+
+		/**
+		 * Vector representing the back direction.
+		 * This is shorthand for writing Vector4(0.0f, 0.0f, -1.0f, 0.0f).
+		 */
+		static const Vector4 BACK;
+
+		/**
+		 * Vector representing the up direction.
+		 * This is shorthand for writing Vector4(0.0f, 1.0f, 0.0f, 0.0f).
+		 */
+		static const Vector4 UP;
+
+		/**
+		 * Vector representing the down direction.
+		 * This is shorthand for writing Vector4(0.0f, -1.0f, 0.0f, 0.0f).
+		 */
+		static const Vector4 DOWN;
+
+		/**
+		 * Vector representing the right direction.
+		 * This is shorthand for writing Vector4(1.0f, 0.0f, 0.0f, 0.0f).
+		 */
+		static const Vector4 RIGHT;
+
+		/**
+		 * Vector representing the left direction.
+		 * This is shorthand for writing Vector4(-1.0f, 0.0f, 0.0f, 0.0f).
+		 */
+		static const Vector4 LEFT;
+
+		/**
+		 * Shorthand for writing Vector4(1.0f, 1.0f, 1.0f, 1.0f).
 		 */
 		static const Vector4 ONE;
 
 		/**
-		 * Shorthand for writing Vector3(0.0f, 0.0f, 0.0f, 0.0f).
+		 * Shorthand for writing Vector4(0.0f, 0.0f, 0.0f, 0.0f).
 		 */
 		static const Vector4 ZERO;
 	};

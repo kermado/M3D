@@ -17,7 +17,7 @@ namespace M3D
 
 	Matrix3::Matrix3(const float arr[9])
 	{
-		memcpy(m, arr, 9 * sizeof(float));
+		std::memcpy(m, arr, 9 * sizeof(float));
 	}
 
 	Matrix3::Matrix3(float entry00, float entry01, float entry02,
@@ -68,7 +68,7 @@ namespace M3D
 		);
 	}
 
-	Matrix3 operator-(const Matrix3 &A)
+	Matrix3 operator-(const Matrix3& A)
 	{
 		return Matrix3(
 			-A[0], -A[1], -A[2],
@@ -131,11 +131,20 @@ namespace M3D
 		out << std::scientific;
 		out.precision(3);
 
-		out << "┌─                               ─┐" << std::endl;
-		out << "│ " << A[0] << "  " << A[1] << "  " << A[2] << " │" << std::endl;
-		out << "│ " << A[3] << "  " << A[4] << "  " << A[5] << " │" << std::endl;
-		out << "│ " << A[6] << "  " << A[7] << "  " << A[8] << " │" << std::endl;
-		out << "└─                               ─┘" << std::endl;
+		out << "┌─                                    ─┐" << std::endl;
+
+		for (std::size_t i = 0; i < 3; ++i)
+		{
+			out << "│";
+			for (std::size_t j = 0; j < 3; ++j)
+			{
+				const float entry = A[3 * i + j];
+				out << ((entry < 0) ? "  " : "  +") << entry;
+			}
+			out << "  │" << std::endl;
+		}
+
+		out << "└─                                    ─┘" << std::endl;
 
 		out << std::defaultfloat;
 		return out;
@@ -304,7 +313,7 @@ namespace M3D
 		// forward direction.
 		const Vector3 yAxis = cross(zAxis, xAxis).normalized();
 
-		// Finally return the lookat matrix.
+		// Finally return the rotation matrix.
 		return Matrix3(
 			xAxis.x, yAxis.x, zAxis.x,
 			xAxis.y, yAxis.y, zAxis.y,

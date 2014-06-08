@@ -5,8 +5,14 @@
 
 namespace M3D
 {
-	const Vector4 Vector4::ONE	= Vector4(1.0f, 1.0f, 1.0f, 1.0f);
-	const Vector4 Vector4::ZERO	= Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+	const Vector4 Vector4::FORWARD	= Vector4(0.0f, 0.0f, 1.0f, 0.0f);
+	const Vector4 Vector4::BACK		= Vector4(0.0f, 0.0f, -1.0f, 0.0f);
+	const Vector4 Vector4::UP		= Vector4(0.0f, 1.0f, 0.0f, 0.0f);
+	const Vector4 Vector4::DOWN		= Vector4(0.0f, -1.0f, 0.0f, 0.0f);
+	const Vector4 Vector4::RIGHT	= Vector4(1.0f, 0.0f, 0.0f, 0.0f);
+	const Vector4 Vector4::LEFT		= Vector4(-1.0f, 0.0f, 0.0f, 0.0f);
+	const Vector4 Vector4::ONE		= Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+	const Vector4 Vector4::ZERO		= Vector4(0.0f, 0.0f, 0.0f, 0.0f);
 
 	Vector4::Vector4()
 	: x(0.0f)
