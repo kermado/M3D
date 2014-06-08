@@ -1,6 +1,8 @@
 Mathematics 3D (M3D)
 ====================
 
+[![Build Status](https://travis-ci.org/kermado/M3D.svg?branch=master)](https://travis-ci.org/kermado/M3D)
+
 Overview
 --------
 
