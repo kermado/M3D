@@ -1,22 +1,10 @@
 language: cpp
 
 compiler:
-  - gcc
-  - clang
+  - clang++
 
 before_install:
-  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-  - sudo apt-get -qq update
-  - apt-cache pkgnames g++
-  - apt-cache pkgnames clang
-  - apt-cache pkgnames libboost
-  - apt-cache pkgnames libc++
-
-install:
-  - if [ "$CC" = 'gcc' ]; then sudo apt-get -qq install "g++-${GCC_V}"; fi
-  - if [ "$CC" = 'gcc' ]; then export CXX="g++-${GCC_V}" CC="gcc-${GCC_V}"; fi
-  - if [ "$CC" = 'clang' ]; then sudo apt-get -qq install "libstdc++-${GCC_V}-dev"; fi
-  - sudo apt-get -qq install libboost-test-dev libboost-test-dev
+  - sudo apt-get install libboost-dev
 
 before_script:
   - mkdir build
