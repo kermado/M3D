@@ -1,8 +1,8 @@
 language: cpp
 
 compiler:
-  - cmake
-  - gcc
+  - clang-3.4
+  - gcc-4.8
 
 before_script:
   - mkdir build
