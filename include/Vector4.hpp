@@ -1,7 +1,7 @@
 #ifndef VECTOR4_HPP
 #define VECTOR4_HPP
 
-#include <iostream>
+#include <ostream>
 
 #include <Vector3.hpp>
 

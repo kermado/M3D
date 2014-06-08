@@ -1,7 +1,7 @@
 #ifndef MATRIX4_HPP
 #define MATRIX4_HPP
 
-#include <iostream>
+#include <ostream>
 #include <Vector3.hpp>
 #include <Vector4.hpp>
 #include <Matrix3.hpp>

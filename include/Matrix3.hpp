@@ -1,7 +1,7 @@
 #ifndef MATRIX3_HPP
 #define MATRIX3_HPP
 
-#include <iostream>
+#include <ostream>
 #include <Vector3.hpp>
 
 namespace M3D
