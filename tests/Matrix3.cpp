@@ -5,7 +5,6 @@
 
 using namespace M3D;
 
-
 BOOST_AUTO_TEST_SUITE(Matrix3_Test_Suite)
 
 /**

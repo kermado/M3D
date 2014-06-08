@@ -4,7 +4,6 @@
 
 using namespace M3D;
 
-
 BOOST_AUTO_TEST_SUITE(Quaternion_Test_Suite)
 
 /**

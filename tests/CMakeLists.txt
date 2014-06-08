@@ -17,11 +17,16 @@ SET(TEST_SRCS
 	${SRC_ROOT}/Matrix4.cpp
 )
 
+# Find the boost test library.
+FIND_PACKAGE(Boost COMPONENTS unit_test_framework REQUIRED)
+
 # Add the unit tests executable.
 ADD_EXECUTABLE(${PROJECT_TESTS_NAME} ${TEST_SRCS})
 
-# Link the unit tests executable with the library.
+# Link the unit tests executable with the M3D and Boost Test libraries.
 TARGET_LINK_LIBRARIES(${PROJECT_TESTS_NAME} ${LIBRARY_NAME})
+TARGET_LINK_LIBRARIES(${PROJECT_TESTS_NAME} ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 
+# CTest setup.
 ENABLE_TESTING()
 ADD_TEST(UnitTests ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_TESTS_NAME})
