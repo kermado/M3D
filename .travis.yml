@@ -4,7 +4,7 @@ compiler:
   - clang++
 
 before_install:
-  - sudo apt-get install libboost-dev
+  - sudo apt-get install libboost-test-dev
 
 before_script:
   - mkdir build
