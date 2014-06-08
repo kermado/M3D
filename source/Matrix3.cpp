@@ -3,8 +3,6 @@
 #include <cmath>
 #include <cassert>
 #include <cstring>
-#include <iomanip>
-#include <iostream>
 
 namespace M3D
 {
@@ -130,25 +128,15 @@ namespace M3D
 
 	std::ostream& operator <<(std::ostream& out, const Matrix3& A)
 	{
-		out << std::scientific;
-		out.precision(3);
-
-		out << "┌─                                    ─┐" << std::endl;
-
 		for (std::size_t i = 0; i < 3; ++i)
 		{
-			out << "│";
 			for (std::size_t j = 0; j < 3; ++j)
 			{
 				const float entry = A[3 * i + j];
-				out << ((entry < 0) ? "  " : "  +") << entry;
+				out << entry << ", ";
 			}
-			out << "  │" << std::endl;
 		}
 
-		out << "└─                                    ─┘" << std::endl;
-
-		out << std::defaultfloat;
 		return out;
 	}
 
