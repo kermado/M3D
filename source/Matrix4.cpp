@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <cassert>
+#include <cstring>
 #include <iomanip>
 
 namespace M3D
