@@ -19,7 +19,6 @@ install:
   - sudo apt-get -qq install libboost-test-dev libboost-test-dev
 
 before_script:
-  - $CXX --version
   - mkdir build
   - cd build
   - cmake ..
