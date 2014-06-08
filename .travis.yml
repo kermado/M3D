@@ -2,6 +2,7 @@ language: cpp
 
 compiler:
   - clang++
+  - g++
 
 before_install:
   - sudo apt-get install libboost-test-dev
