@@ -40,7 +40,7 @@ SET(LIBRARY_SRCS
 )
 
 # Use c++11 in all cases.
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++")
 
 # Create a static library.
 ADD_LIBRARY(${LIBRARY_NAME} STATIC ${LIBRARY_SRCS})
