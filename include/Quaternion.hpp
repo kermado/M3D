@@ -1,7 +1,7 @@
 #ifndef QUATERNION_HPP
 #define QUATERNION_HPP
 
-#include <iostream>
+#include <ostream>
 
 #include <Vector3.hpp>
 
