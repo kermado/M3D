@@ -4,6 +4,7 @@
 #include <cassert>
 #include <cstring>
 #include <iomanip>
+#include <iostream>
 
 namespace M3D
 {
