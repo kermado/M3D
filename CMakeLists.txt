@@ -23,6 +23,9 @@ INCLUDE_DIRECTORIES(${INC_ROOT})
 
 # Files.
 SET(LIBRARY_SRCS
+	${INC_ROOT}/Vector2.hpp
+	${SRC_ROOT}/Vector2.cpp
+
 	${INC_ROOT}/Vector3.hpp
 	${SRC_ROOT}/Vector3.cpp
 

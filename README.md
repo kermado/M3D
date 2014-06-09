@@ -8,6 +8,7 @@ Overview
 
 M3D is an extremely lightweight cross-platform C++ mathematics library intended for 3D computer graphics applications with OpenGL or DirectX. The API closely resembles that of Unity's mathematics classes. The following mathematical structures are currently included:
 
+ * Vector2
  * Vector3
  * Vector4
  * Quaternion
@@ -39,7 +40,6 @@ To be completed
 
 Classes for the following mathematical structures are yet to be completed:
 
- * Vector2
  * Matrix2x2
 
 Authors

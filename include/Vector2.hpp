@@ -147,11 +147,6 @@ namespace M3D
 		 */
 		float y;
 
-		/**
-		 * Third component.
-		 */
-		float z;
-
 	public:
 		/**
 		 * Vector representing the up direction.

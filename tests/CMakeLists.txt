@@ -10,6 +10,7 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include)
 # Unit test sources.
 SET(TEST_SRCS
 	${SRC_ROOT}/main.cpp
+	${SRC_ROOT}/Vector2.cpp
 	${SRC_ROOT}/Vector3.cpp
 	${SRC_ROOT}/Vector4.cpp
 	${SRC_ROOT}/Quaternion.cpp
