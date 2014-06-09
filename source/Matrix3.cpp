@@ -128,14 +128,52 @@ namespace M3D
 
 	std::ostream& operator <<(std::ostream& out, const Matrix3& A)
 	{
+		std::string stringMatrix[9];
+		std::size_t columnLengths[3] = {0, 0, 0};
+
 		for (std::size_t i = 0; i < 3; ++i)
 		{
 			for (std::size_t j = 0; j < 3; ++j)
 			{
-				const float entry = A[3 * i + j];
-				out << entry << ", ";
+				const std::string str = std::to_string(A[3 * i + j]);
+
+				const std::size_t len = str.length();
+				if (len > columnLengths[j]) columnLengths[j] = len;
+
+				stringMatrix[3 * i + j] = str;
 			}
 		}
+
+		const std::size_t totalLength = columnLengths[0] + columnLengths[1] +
+			columnLengths[2] + 2;
+
+		out << "┌─";
+		for (std::size_t i = 0; i < totalLength; ++i) out << " ";
+		out << "─┐" << std::endl;
+
+		for (std::size_t i = 0; i < 3; ++i)
+		{
+			out << "│";
+
+			for (std::size_t j = 0; j < 3; ++j)
+			{
+				const std::string str = stringMatrix[3 * i + j];
+				const std::size_t len = str.length();
+
+				for (std::size_t k = 0; k < columnLengths[j] - len; ++k)
+				{
+					out << " ";
+				}
+
+				out << " " << str;
+			}
+
+			out << " │" << std::endl;
+		}
+
+		out << "└─";
+		for (std::size_t i = 0; i < totalLength; ++i) out << " ";
+		out << "─┘";
 
 		return out;
 	}
