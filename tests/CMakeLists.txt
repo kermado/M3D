@@ -14,6 +14,7 @@ SET(TEST_SRCS
 	${SRC_ROOT}/Vector3.cpp
 	${SRC_ROOT}/Vector4.cpp
 	${SRC_ROOT}/Quaternion.cpp
+	${SRC_ROOT}/Matrix2.cpp
 	${SRC_ROOT}/Matrix3.cpp
 	${SRC_ROOT}/Matrix4.cpp
 )

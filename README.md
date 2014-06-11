@@ -12,6 +12,7 @@ M3D is an extremely lightweight cross-platform C++ mathematics library intended 
  * Vector3
  * Vector4
  * Quaternion
+ * Matrix2x2
  * Matrix3x3
  * Matrix4x4
 
@@ -34,13 +35,6 @@ sudo make install
 ```
 
 Windows users can use CMake to generate a Visual Studio project.
-
-To be completed
----------------
-
-Classes for the following mathematical structures are yet to be completed:
-
- * Matrix2x2
 
 Authors
 -------
