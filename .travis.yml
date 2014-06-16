@@ -3,6 +3,10 @@ language: cpp
 compiler:
   - clang++
 
+branches:
+  only:
+    - master
+
 before_install:
   - sudo apt-get update
   - sudo apt-get install libboost-test-dev
