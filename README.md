@@ -2,6 +2,7 @@ Mathematics 3D (M3D)
 ====================
 
 [![Build Status](https://travis-ci.org/kermado/M3D.svg?branch=master)](https://travis-ci.org/kermado/M3D)
+[![Coverage Status](https://img.shields.io/coveralls/kermado/M3D.svg)](https://coveralls.io/r/kermado/M3D)
 
 Overview
 --------
