@@ -2,7 +2,7 @@
 #define MATRIX2_HPP
 
 #include <ostream>
-#include <Vector2.hpp>
+#include <M3D/Vector2.hpp>
 
 namespace M3D
 {

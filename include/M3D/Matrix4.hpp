@@ -2,9 +2,9 @@
 #define MATRIX4_HPP
 
 #include <ostream>
-#include <Vector3.hpp>
-#include <Vector4.hpp>
-#include <Matrix3.hpp>
+#include <M3D/Vector3.hpp>
+#include <M3D/Vector4.hpp>
+#include <M3D/Matrix3.hpp>
 
 namespace M3D
 {

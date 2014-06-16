@@ -1,6 +1,7 @@
+#include <M3D/Quaternion.hpp>
+
 #include <boost/test/unit_test.hpp>
 #include <cmath>
-#include <Quaternion.hpp>
 
 using namespace M3D;
 

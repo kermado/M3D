@@ -1,7 +1,8 @@
+#include <M3D/Matrix3.hpp>
+#include <M3D/Vector3.hpp>
+
 #include <boost/test/unit_test.hpp>
 #include <cmath>
-#include <Matrix3.hpp>
-#include <Vector3.hpp>
 
 using namespace M3D;
 

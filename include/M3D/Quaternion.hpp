@@ -3,7 +3,7 @@
 
 #include <ostream>
 
-#include <Vector3.hpp>
+#include <M3D/Vector3.hpp>
 
 namespace M3D
 {

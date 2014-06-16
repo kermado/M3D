@@ -1,9 +1,8 @@
-#include <Quaternion.hpp>
+#include <M3D/Quaternion.hpp>
+#include <M3D/Vector3.hpp>
 
 #include <cmath>
 #include <cassert>
-
-#include <Vector3.hpp>
 
 namespace M3D
 {

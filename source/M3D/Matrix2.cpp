@@ -1,4 +1,4 @@
-#include <Matrix2.hpp>
+#include <M3D/Matrix2.hpp>
 
 #include <cmath>
 #include <cassert>

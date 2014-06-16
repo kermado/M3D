@@ -1,8 +1,9 @@
+#include <M3D/Matrix4.hpp>
+#include <M3D/Vector3.hpp>
+#include <M3D/Vector4.hpp>
+
 #include <boost/test/unit_test.hpp>
 #include <cmath>
-#include <Matrix4.hpp>
-#include <Vector3.hpp>
-#include <Vector4.hpp>
 
 using namespace M3D;
 

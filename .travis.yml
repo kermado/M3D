@@ -7,11 +7,12 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install libboost-test-dev
 
-before_script:
+script:
   - mkdir build
   - cd build
-  - cmake ..
-
-script:
+  - cmake .. -DCMAKE_BUILD_TYPE=Debug -DCOVERALLS=true
   - make
-  - ctest --output-on-failure
+  - make coveralls
+
+after_success:
+  - ./coveralls-upload
