@@ -19,4 +19,4 @@ script:
   - make coveralls
 
 after_success:
-  - bash ./coveralls-upload
+  - sh ./coveralls-upload
