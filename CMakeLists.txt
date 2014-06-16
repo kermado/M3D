@@ -54,9 +54,10 @@ SET(LIBRARY_SRCS
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # Coveralls
-INCLUDE(CodeCoverage)
-INCLUDE(Coveralls)
 IF ((COVERALLS OR COVERAGE) AND CMAKE_BUILD_TYPE STREQUAL "Debug")
+	INCLUDE(CodeCoverage)
+	INCLUDE(Coveralls)
+
 	MESSAGE(STATUS "Will generate coverage data")
 	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -Wall -W -fprofile-arcs -ftest-coverage")
 	SET(CMAKE_C_FLAGS "-g -O0 -Wall -W -fprofile-arcs -ftest-coverage")
