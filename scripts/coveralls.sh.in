@@ -13,8 +13,8 @@ echo "generating gcov files"
 
 for file in $(find ${LIB_DIR} -iname *.gcda -print)
 do
-	echo generating file $(basename $file)
-	gcov --preserve-paths -o $(dirname $file) $file 1>/dev/null || exit 0
+  echo generating file $(basename $file)
+  gcov --preserve-paths -o $(dirname $file) $file 1>/dev/null || exit 0
 done
 
 echo "done!"
