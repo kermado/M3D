@@ -1,4 +1,6 @@
 #include <M3D/Vector3.hpp>
+#include <M3D/Vector4.hpp>
+
 
 #include <cmath>
 #include <cassert>
@@ -30,6 +32,14 @@ namespace M3D
 		// Nothing to do.
 	}
 
+	Vector3::Vector3(const Vector4& v)
+	: x(v.x)
+	, y(v.y)
+	, z(v.z)
+	{
+		// Nothing to do.
+	}
+
 	float operator==(const Vector3& v1, const Vector3& v2)
 	{
 		const float epsilon = 1e-6;
@@ -47,9 +57,27 @@ namespace M3D
 		return Vector3(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
 	}
 
+	Vector3& operator+=(Vector3& v1, const Vector3& v2)
+	{
+		v1.x += v2.x;
+		v1.y += v2.y;
+		v1.z += v2.z;
+
+		return v1;
+	}
+
 	Vector3 operator-(const Vector3& v1, const Vector3& v2)
 	{
 		return Vector3(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
+	}
+
+	Vector3& operator-=(Vector3& v1, const Vector3& v2)
+	{
+		v1.x -= v2.x;
+		v1.y -= v2.y;
+		v1.z -= v2.z;
+
+		return v1;
 	}
 
 	Vector3 operator-(const Vector3& v)
@@ -62,6 +90,15 @@ namespace M3D
 		return Vector3(v.x * s, v.y * s, v.z * s);
 	}
 
+	Vector3& operator*=(Vector3& v, const float s)
+	{
+		v.x *= s;
+		v.y *= s;
+		v.z *= s;
+
+		return v;
+	}
+
 	Vector3 operator*(const float s, const Vector3& v)
 	{
 		return v * s;
@@ -71,6 +108,16 @@ namespace M3D
 	{
 		assert(s != 0.0f);
 		return v * (1.0f / s);
+	}
+
+	Vector3& operator/=(Vector3& v, const float s)
+	{
+		assert(s != 0.0f);
+		v.x /= s;
+		v.y /= s;
+		v.z /= s;
+
+		return v;
 	}
 
 	std::ostream& operator <<(std::ostream& out, const Vector3& v)

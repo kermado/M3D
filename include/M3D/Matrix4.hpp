@@ -1,13 +1,16 @@
 #ifndef MATRIX4_HPP
 #define MATRIX4_HPP
 
-#include <ostream>
-#include <M3D/Vector3.hpp>
-#include <M3D/Vector4.hpp>
 #include <M3D/Matrix3.hpp>
+
+#include <ostream>
 
 namespace M3D
 {
+	class Vector3;
+	class Vector4;
+	class Quaternion;
+
 	class Matrix4
 	{
 	public:
@@ -62,6 +65,15 @@ namespace M3D
 		 * @param A The 3x3 matrix from which to construct this matrix.
 		 */
 		Matrix4(const Matrix3& A);
+
+		/**
+		 * Constructor.
+		 *
+		 * Constructs the matrix from the passed quaternion.
+		 *
+		 * @param q The quaternion from which to construct the matrix.
+		 */
+		Matrix4(const Quaternion& q);
 
 		/**
 		 * Copy constructor.
@@ -225,6 +237,34 @@ namespace M3D
 		 * @return The multiplicitive inverse of this matrix.
 		 */
 		Matrix4 inverse() const;
+
+		/**
+		 * Returns a scaling matrix that scales by `scaleFactors.x`,
+		 * 'scaleFactors.y' and `scaleFactors.z` in the x, y and z axes
+		 * respectively.
+		 *
+		 * @param scaleFactors Scale factors.
+		 * @return Scaling matrix.
+		 */
+		static Matrix4 scaling(const Vector3& scaleFactors);
+
+		/**
+		 * Returns a scaling matrix that scales by `factor` uniformly in the
+		 * x, y and z components.
+		 *
+		 * @param scale Uniform scale factor.
+		 * @return Scaling matrix.
+		 */
+		static Matrix4 scaling(const float factor);
+
+		/**
+		 * Returns a translation matrix that translates by the vector
+		 * `translation`.
+		 *
+		 * @param translation Translation vector.
+		 * @return Matrix that translates by the translation vector.
+		 */
+		static Matrix4 translation(const Vector3& translation);
 
 		/**
 		 * Returns a rotation matrix corresponding to the rotation around the

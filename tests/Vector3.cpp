@@ -1,4 +1,5 @@
 #include <M3D/Vector3.hpp>
+#include <M3D/Vector4.hpp>
 
 #include <boost/test/unit_test.hpp>
 #include <cmath>
@@ -23,13 +24,32 @@ BOOST_AUTO_TEST_CASE(TestDefaultConstructor)
  * Ensure that the constructor sets all component values to those that were
  * specified.
  */
-BOOST_AUTO_TEST_CASE(TestConstructor)
+BOOST_AUTO_TEST_CASE(TestComponentConstructor)
 {
 	const float x = 1.0f;
 	const float y = 2.0f;
 	const float z = 3.0f;
 
 	const Vector3 v(x, y, z);
+
+	BOOST_CHECK_EQUAL(v.x, x);
+	BOOST_CHECK_EQUAL(v.y, y);
+	BOOST_CHECK_EQUAL(v.z, z);
+}
+
+/**
+ * Ensure that the constructor sets all component values to the first three
+ * coordinates of the provided Vector4.
+ */
+BOOST_AUTO_TEST_CASE(TestVector4Constructor)
+{
+	const float x = 1.0f;
+	const float y = 2.0f;
+	const float z = 3.0f;
+	const float w = 4.0f;
+
+	const Vector4 vec4(x, y, z, w);
+	const Vector3 v(vec4);
 
 	BOOST_CHECK_EQUAL(v.x, x);
 	BOOST_CHECK_EQUAL(v.y, y);
@@ -136,6 +156,19 @@ BOOST_AUTO_TEST_CASE(TestAdditionOperator)
 }
 
 /**
+ * Test the addition and assignment operator.
+ */
+BOOST_AUTO_TEST_CASE(TestAdditionAssignmentOperator)
+{
+	Vector3 v1(6.0f, 4.0f, 2.0f);
+	const Vector3 v2(1.0f, -3.0f, 7.0f);
+
+	v1 += v2;
+	BOOST_CHECK_EQUAL(v1, Vector3(7.0f, 1.0f, 9.0f));
+	BOOST_CHECK_EQUAL(v1 += v2, Vector3(8.0f, -2.0f, 16.0f));
+}
+
+/**
  * Test the subtraction operator.
  */
 BOOST_AUTO_TEST_CASE(TestSubtractionOperator)
@@ -144,6 +177,19 @@ BOOST_AUTO_TEST_CASE(TestSubtractionOperator)
 	const Vector3 v2(7.0f, -9.0f, 11.0f);
 
 	BOOST_CHECK_EQUAL(v1 - v2, Vector3(-5.0f, 12.0f, -6.0f));
+}
+
+/**
+ * Test the subtraction and assignment operator.
+ */
+BOOST_AUTO_TEST_CASE(TestSubtractionAssignmentOperator)
+{
+	Vector3 v1(6.0f, 4.0f, 2.0f);
+	const Vector3 v2(1.0f, -3.0f, 7.0f);
+
+	v1 -= v2;
+	BOOST_CHECK_EQUAL(v1, Vector3(5.0f, 7.0f, -5.0f));
+	BOOST_CHECK_EQUAL(v1 -= v2, Vector3(4.0f, 10.0f, -12.0f));
 }
 
 /**
@@ -177,6 +223,19 @@ BOOST_AUTO_TEST_CASE(TestScalarMultiplicationOperator2)
 }
 
 /**
+ * Test the scalar multiplication and assignment operator.
+ */
+BOOST_AUTO_TEST_CASE(TestScalarMultiplicationAssignmentOperator)
+{
+	Vector3 v1(6.0f, 4.0f, -2.0f);
+	const float s = 2.0f;
+
+	v1 *= s;
+	BOOST_CHECK_EQUAL(v1, Vector3(12.0f, 8.0f, -4.0f));
+	BOOST_CHECK_EQUAL(v1 *= s, Vector3(24.0f, 16.0f, -8.0f));
+}
+
+/**
  * Test the scalar division operator.
  */
 BOOST_AUTO_TEST_CASE(TestScalarDivisionOperator)
@@ -184,6 +243,19 @@ BOOST_AUTO_TEST_CASE(TestScalarDivisionOperator)
 	const Vector3 v(3.0f, 6.0f, -9.0f);
 
 	BOOST_CHECK_EQUAL(v / 3.0f, Vector3(1.0f, 2.0f, -3.0f));
+}
+
+/**
+ * Test the scalar division and assignment operator.
+ */
+BOOST_AUTO_TEST_CASE(TestScalarDivisionAssignmentOperator)
+{
+	Vector3 v1(12.0f, -24.0f, 8.0f);
+	const float s = 2.0f;
+
+	v1 /= s;
+	BOOST_CHECK_EQUAL(v1, Vector3(6.0f, -12.0f, 4.0f));
+	BOOST_CHECK_EQUAL(v1 /= s, Vector3(3.0f, -6.0f, 2.0f));
 }
 
 /**

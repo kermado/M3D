@@ -208,7 +208,7 @@ namespace M3D
 		 * @param scaleFactors Scale factors.
 		 * @return Scaling matrix.
 		 */
-		static Matrix2 scale(const Vector2& scaleFactors);
+		static Matrix2 scaling(const Vector2& scaleFactors);
 
 		/**
 		 * Returns a scaling matrix that scales by `factor` uniformly.
@@ -216,7 +216,7 @@ namespace M3D
 		 * @param scale Uniform scale factor.
 		 * @return Scaling matrix.
 		 */
-		static Matrix2 scale(const float factor);
+		static Matrix2 scaling(const float factor);
 
 		/**
 		 * Returns a rotation matrix that rotates by `angle` radians.

@@ -196,7 +196,7 @@ namespace M3D
 		);
 	}
 
-	Matrix2 Matrix2::scale(const Vector2& scaleFactors)
+	Matrix2 Matrix2::scaling(const Vector2& scaleFactors)
 	{
 		return Matrix2(
 			scaleFactors.x, 0.0f,
@@ -204,7 +204,7 @@ namespace M3D
 		);
 	}
 
-	Matrix2 Matrix2::scale(const float factor)
+	Matrix2 Matrix2::scaling(const float factor)
 	{
 		return Matrix2(
 			factor, 0.0f,

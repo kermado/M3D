@@ -5,6 +5,8 @@
 
 namespace M3D
 {
+	class Vector4;
+
 	class Vector3
 	{
 	public:
@@ -23,6 +25,16 @@ namespace M3D
 		 * @param z_ The third component.
 		 */
 		Vector3(float x_, float y_, float z_);
+
+		/**
+		 * Constructor.
+		 *
+		 * Constructs the vector from the specified 4D vector by dropping the
+		 * final coordinate.
+		 *
+		 * @param v Vector4 from which to construct the vector.
+		 */
+		Vector3(const Vector4& v);
 
 		/**
 		 * Vector equality operator.
@@ -53,6 +65,15 @@ namespace M3D
 		friend Vector3 operator+(const Vector3& v1, const Vector3& v2);
 
 		/**
+		 * Vector addition and assignment operator.
+		 *
+		 * @param v1 First vector.
+		 * @param v2 Second vector.
+		 * @return Adds the second vector to the first vector.
+		 */
+		friend Vector3& operator+=(Vector3& v1, const Vector3& v2);
+
+		/**
 		 * Vector subtraction operator.
 		 *
 		 * @param v1 The first vector.
@@ -61,6 +82,15 @@ namespace M3D
 		 * vector.
 		 */
 		friend Vector3 operator-(const Vector3& v1, const Vector3& v2);
+
+		/**
+		 * Vector subtraction and assignment operator.
+		 *
+		 * @param v1 First vector.
+		 * @param v2 Second vector.
+		 * @return Subtracts the second vector from the first vector.
+		 */
+		friend Vector3& operator-=(Vector3& v1, const Vector3& v2);
 
 		/**
 		 * Vector negation operator.
@@ -80,6 +110,15 @@ namespace M3D
 		friend Vector3 operator*(const Vector3& v, const float s);
 
 		/**
+		 * Scalar multiplication and assignment operator.
+		 *
+		 * @param v1 First vector.
+		 * @param s The scalar value.
+		 * @return Scales vector `v` by `s`.
+		 */
+		friend Vector3& operator*=(Vector3& v, const float s);
+
+		/**
 		 * Scalar multiplication operator.
 		 *
 		 * @param s The scalar value.
@@ -96,6 +135,15 @@ namespace M3D
 		 * @return Vector `v` scaled by the reciprocal of `s`.
 		 */
 		friend Vector3 operator/(const Vector3& v, const float s);
+
+		/**
+		 * Scalar division and assignment operator.
+		 *
+		 * @param v1 First vector.
+		 * @param s The scalar value.
+		 * @return Scales vector `v` by the reciprocal `s`.
+		 */
+		friend Vector3& operator/=(Vector3& v, const float s);
 
 		/**
 		 * Stream output operator.

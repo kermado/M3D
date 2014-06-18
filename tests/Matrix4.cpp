@@ -1,6 +1,7 @@
 #include <M3D/Matrix4.hpp>
 #include <M3D/Vector3.hpp>
 #include <M3D/Vector4.hpp>
+#include <M3D/Quaternion.hpp>
 
 #include <boost/test/unit_test.hpp>
 #include <cmath>
@@ -614,6 +615,49 @@ BOOST_AUTO_TEST_CASE(TestInverse2)
 }
 
 /**
+ * First test for the scaling static factory function.
+ */
+BOOST_AUTO_TEST_CASE(TestScalingFactory1)
+{
+	const Vector3 scaleFactors(1.0f, 2.0f, 3.0f);
+	const Matrix4 A = Matrix4::scaling(scaleFactors);
+
+	BOOST_CHECK_EQUAL(A * Vector4(2.0f, 4.0f, -1.0f, 3.0f), Vector4(2.0f, 8.0f, -3.0f, 3.0f));
+}
+
+/**
+ * Second test for the scaling static factory function.
+ */
+BOOST_AUTO_TEST_CASE(TestScalingFactory2)
+{
+	const Matrix4 A = Matrix4::scaling(2.0f);
+
+	BOOST_CHECK_EQUAL(A * Vector4(2.0f, 4.0f, -1.0f, 3.0f), Vector4(4.0f, 8.0f, -2.0f, 3.0f));
+}
+
+/**
+ * First test for the translation static factory function.
+ */
+BOOST_AUTO_TEST_CASE(TestTranslationFactory1)
+{
+	const Vector3 translation(1.0f, 2.0f, 3.0f);
+	const Matrix4 A = Matrix4::translation(translation);
+
+	BOOST_CHECK_EQUAL(A * Vector4(0.0f, 0.0f, 0.0f, 1.0f), Vector4(translation, 1.0f));
+}
+
+/**
+ * Second test for the translation static factory function.
+ */
+BOOST_AUTO_TEST_CASE(TestTranslationFactory2)
+{
+	const Vector3 translation(1.0f, 1.0f, 1.0f);
+	const Matrix4 A = Matrix4::translation(translation);
+
+	BOOST_CHECK_EQUAL(A * Vector4(0.0f, 5.0f, 2.0f, 1.0f), Vector4(1.0f, 6.0f, 3.0f, 1.0f));
+}
+
+/**
  * First test for the angle axis static factory function.
  */
 BOOST_AUTO_TEST_CASE(TestAngleAxisFactory1)
@@ -622,7 +666,7 @@ BOOST_AUTO_TEST_CASE(TestAngleAxisFactory1)
 	const Vector3 axis(0.0f, 1.0f, 0.0f);
 	const Matrix4 A = Matrix4::angleAxis(angle, axis);
 
-	BOOST_CHECK_EQUAL(A * Vector4::FORWARD, Vector3::FORWARD);
+	BOOST_CHECK_EQUAL(A * Vector4::FORWARD, Vector4::FORWARD);
 }
 
 /**
@@ -817,5 +861,40 @@ BOOST_AUTO_TEST_CASE(TestLookRotation4)
 	BOOST_CHECK_EQUAL(A * Vector4::UP, Vector4::FORWARD);
 	BOOST_CHECK_EQUAL(A, B);
 }
+
+/**
+ * First test for the constructor that constructs the matrix defined by the
+ * passed quaternion.
+ */
+BOOST_AUTO_TEST_CASE(TestQuaternionConstructor1)
+{
+	const Quaternion q = Quaternion::lookRotation(Vector3::RIGHT);
+
+	BOOST_CHECK_EQUAL(Matrix4(q) * Vector4::FORWARD, Vector4::RIGHT);
+}
+
+/**
+ * Second test for the constructor that constructs the matrix defined by the
+ * passed quaternion.
+ */
+BOOST_AUTO_TEST_CASE(TestQuaternionConstructor2)
+{
+	const Quaternion q = Quaternion::lookRotation(Vector3::LEFT);
+
+	BOOST_CHECK_EQUAL(Matrix4(q) * Vector4::FORWARD, Vector4::LEFT);
+}
+
+/**
+ * Third test for the constructor that constructs the matrix defined by the
+ * passed quaternion.
+ */
+BOOST_AUTO_TEST_CASE(TestQuaternionConstructor3)
+{
+	const Vector4 v = Vector4(2.0f, -3.0f, -5.0f, 0.0f).normalized();
+	const Quaternion q = Quaternion::lookRotation(v);
+
+	BOOST_CHECK_EQUAL(Matrix4(q) * Vector4::FORWARD, v);
+}
+
 
 BOOST_AUTO_TEST_SUITE_END()

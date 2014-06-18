@@ -1,4 +1,7 @@
 #include <M3D/Matrix4.hpp>
+#include <M3D/Quaternion.hpp>
+#include <M3D/Vector3.hpp>
+#include <M3D/Vector4.hpp>
 
 #include <cmath>
 #include <cassert>
@@ -45,6 +48,23 @@ namespace M3D
 		A[3], A[4], A[5], 0.0f,
 		A[6], A[7], A[8], 0.0f,
 		0.0f, 0.0f, 0.0f, 1.0f}
+	{
+		// Nothing to do.
+	}
+
+	Matrix4::Matrix4(const Quaternion& q)
+	: m{1.0f - 2.0f * q.y * q.y - 2.0f * q.z * q.z,
+		2.0f * q.x * q.y - 2.0f * q.w * q.z,
+		2.0f * q.x * q.z + 2.0f * q.w * q.y,
+		0.0f,
+		2.0f * q.x * q.y + 2.0f * q.w * q.z,
+		1.0f - 2.0f * q.x * q.x - 2.0f * q.z * q.z,
+		2.0f * q.y * q.z - 2.0f * q.w * q.x,
+		0.0f,
+		2.0f * q.x * q.z - 2.0f * q.w * q.y,
+		2.0f * q.y * q.z + 2.0f * q.w * q.x,
+		1.0f - 2.0f * q.x * q.x - 2.0f * q.y * q.y,
+		1.0f}
 	{
 		// Nothing to do.
 	}
@@ -370,6 +390,36 @@ namespace M3D
 		const float invDet = 1.0f / det;
 		for (std::size_t i = 0; i < 16; ++i) inv[i] *= invDet;
 		return Matrix4(inv);
+	}
+
+	Matrix4 Matrix4::scaling(const Vector3& scaleFactors)
+	{
+		return Matrix4(
+			scaleFactors.x, 0.0f, 0.0f, 0.0f,
+			0.0f, scaleFactors.y, 0.0f, 0.0f,
+			0.0f, 0.0f, scaleFactors.z, 0.0f,
+			0.0f, 0.0f, 0.0f, 1.0f
+		);
+	}
+
+	Matrix4 Matrix4::scaling(const float factor)
+	{
+		return Matrix4(
+			factor, 0.0f, 0.0f, 0.0f,
+			0.0f, factor, 0.0f, 0.0f,
+			0.0f, 0.0f, factor, 0.0f,
+			0.0f, 0.0f, 0.0f, 1.0f
+		);
+	}
+
+	Matrix4 Matrix4::translation(const Vector3& translation)
+	{
+		return Matrix4(
+			1.0f, 0.0f, 0.0f, translation.x,
+			0.0f, 1.0f, 0.0f, translation.y,
+			0.0f, 0.0f, 1.0f, translation.z,
+			0.0f, 0.0f, 0.0f, 1.0f
+		);
 	}
 
 	Matrix4 Matrix4::angleAxis(const float angle, const Vector3& axis)

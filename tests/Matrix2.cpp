@@ -424,39 +424,39 @@ BOOST_AUTO_TEST_CASE(TestInverse2)
 }
 
 /**
- * First test for the scale static factory function.
+ * First test for the scaling static factory function.
  */
-BOOST_AUTO_TEST_CASE(TestScale1)
+BOOST_AUTO_TEST_CASE(TestScaling1)
 {
-	const Matrix2 A = Matrix2::scale(Vector2(0.0f, 0.0f));
+	const Matrix2 A = Matrix2::scaling(Vector2(0.0f, 0.0f));
 	BOOST_CHECK_EQUAL(A, Matrix2::ZERO);
 }
 
 /**
- * Second test for the scale static factory function.
+ * Second test for the scaling static factory function.
  */
-BOOST_AUTO_TEST_CASE(TestScale2)
+BOOST_AUTO_TEST_CASE(TestScaling2)
 {
-	const Matrix2 A = Matrix2::scale(Vector2(1.0f, 1.0f));
+	const Matrix2 A = Matrix2::scaling(Vector2(1.0f, 1.0f));
 	BOOST_CHECK_EQUAL(A, Matrix2::IDENTITY);
 }
 
 /**
- * Third test for the scale static factory function.
+ * Third test for the scaling static factory function.
  */
-BOOST_AUTO_TEST_CASE(TestScale3)
+BOOST_AUTO_TEST_CASE(TestScaling3)
 {
-	const Matrix2 A = Matrix2::scale(Vector2(2.0f, 4.0f));
+	const Matrix2 A = Matrix2::scaling(Vector2(2.0f, 4.0f));
 	const Vector2 v(1.0f, 2.0f);
 	BOOST_CHECK_EQUAL(A * v, Vector2(2.0f, 8.0f));
 }
 
 /**
- * Fourth test for the scale static factory function.
+ * Fourth test for the scaling static factory function.
  */
-BOOST_AUTO_TEST_CASE(TestScale4)
+BOOST_AUTO_TEST_CASE(TestScaling4)
 {
-	const Matrix2 A = Matrix2::scale(10.0f);
+	const Matrix2 A = Matrix2::scaling(10.0f);
 	const Vector2 v(3.0f, -4.0f);
 	BOOST_CHECK_EQUAL(A * v, Vector2(30.0f, -40.0f));
 }
