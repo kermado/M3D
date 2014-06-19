@@ -173,6 +173,11 @@ namespace M3D
 		);
 	}
 
+	Vector3 lerp(const Vector3& from, const Vector3& to, float factor)
+	{
+		return from * (1.0f - factor) + to * factor;
+	}
+
 	float angle(const Vector3& from, const Vector3& to)
 	{
 		const float cosTheta = dot(from, to) / sqrt(from.sqrMagnitude() * to.sqrMagnitude());

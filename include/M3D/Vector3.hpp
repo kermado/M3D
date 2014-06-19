@@ -293,6 +293,17 @@ namespace M3D
 	Vector3 cross(const Vector3& lhs, const Vector3& rhs);
 
 	/**
+	 * Linearly interpolates between `from` and `to` by the fraction `factor`.
+	 *
+	 * @param from The vector to interpolate from.
+	 * @param to The vector to interpolate towards.
+	 * @param factor The fraction of the distance between `to` and `from`.
+	 * @return Interpolated vector that is `factor` distance between `to` and
+	 * `from`.
+	 */
+	Vector3 lerp(const Vector3& from, const Vector3& to, float factor);
+
+	/**
 	 * Returns the smallest angle in radians between `from` and `to`.
 	 *
 	 * @param from The angle extends round from this vector.

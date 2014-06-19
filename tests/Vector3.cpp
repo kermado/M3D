@@ -372,6 +372,53 @@ BOOST_AUTO_TEST_CASE(TestCrossProduct4)
 }
 
 /**
+ * First test for the lerp function.
+ */
+BOOST_AUTO_TEST_CASE(TestLerp1)
+{
+	Vector3 v(1.0f, 1.0f, 1.0f);
+
+	BOOST_CHECK_EQUAL(lerp(v, v, 0.0f), v);
+	BOOST_CHECK_EQUAL(lerp(v, v, 1.0f), v);
+}
+
+/**
+ * Second test for the lerp function.
+ */
+BOOST_AUTO_TEST_CASE(TestLerp2)
+{
+	Vector3 v(0.0f, 0.0f, 0.0f);
+
+	BOOST_CHECK_EQUAL(lerp(v, v, 0.0f), v);
+	BOOST_CHECK_EQUAL(lerp(v, v, 1.0f), v);
+}
+
+/**
+ * Third test for the lerp function.
+ */
+BOOST_AUTO_TEST_CASE(TestLerp3)
+{
+	Vector3 v(1.0f, -5.0f, 7.0f);
+
+	BOOST_CHECK_EQUAL(lerp(v, -v, 0.5f), Vector3::ZERO);
+	BOOST_CHECK_EQUAL(lerp(v, -v, 0.0f), v);
+	BOOST_CHECK_EQUAL(lerp(v, -v, 1.0f), -v);
+}
+
+/**
+ * Fourth test for the lerp function.
+ */
+BOOST_AUTO_TEST_CASE(TestLerp4)
+{
+	Vector3 v1(1.0f, 2.0f, 0.0f);
+	Vector3 v2(1.0f, 2.0f, 10.0f);
+
+	BOOST_CHECK_EQUAL(lerp(v1, v2, 0.0f), v1);
+	BOOST_CHECK_EQUAL(lerp(v1, v2, 1.0f), v2);
+	BOOST_CHECK_EQUAL(lerp(v1, v2, 0.5f), Vector3(1.0f, 2.0f, 5.0f));
+}
+
+/**
  * First test for the angle function.
  */
 BOOST_AUTO_TEST_CASE(TestAngle1)
